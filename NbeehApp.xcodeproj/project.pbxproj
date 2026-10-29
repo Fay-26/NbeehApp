@@ -6,8 +6,19 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C40C992330932CC8005CD39F /* bird.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C40C992230932CC8005CD39F /* bird.mp3 */; };
+		C40C992530932CD5005CD39F /* cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C40C992430932CD5005CD39F /* cat.mp3 */; };
+		C40C992730932CDE005CD39F /* dog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C40C992630932CDE005CD39F /* dog.mp3 */; };
+		C40C992930932D62005CD39F /* سارة.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C40C992830932D62005CD39F /* سارة.m4a */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C40C98C0309326FF005CD39F /* NbeehApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NbeehApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C40C992230932CC8005CD39F /* bird.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bird.mp3; sourceTree = "<group>"; };
+		C40C992430932CD5005CD39F /* cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat.mp3; sourceTree = "<group>"; };
+		C40C992630932CDE005CD39F /* dog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog.mp3; sourceTree = "<group>"; };
+		C40C992830932D62005CD39F /* سارة.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "سارة.m4a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -30,6 +41,10 @@
 		C40C98B7309326FF005CD39F = {
 			isa = PBXGroup;
 			children = (
+				C40C992830932D62005CD39F /* سارة.m4a */,
+				C40C992630932CDE005CD39F /* dog.mp3 */,
+				C40C992430932CD5005CD39F /* cat.mp3 */,
+				C40C992230932CC8005CD39F /* bird.mp3 */,
 				C40C98C2309326FF005CD39F /* NbeehApp */,
 				C40C98C1309326FF005CD39F /* Products */,
 			);
@@ -102,6 +117,10 @@
 		C40C98BE309326FF005CD39F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				C40C992530932CD5005CD39F /* cat.mp3 in Resources */,
+				C40C992330932CC8005CD39F /* bird.mp3 in Resources */,
+				C40C992730932CDE005CD39F /* dog.mp3 in Resources */,
+				C40C992930932D62005CD39F /* سارة.m4a in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
@@ -246,6 +265,7 @@
 				DEVELOPMENT_TEAM = DRBC8YYF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMotionUsageDescription = "نحتاج الوصول إالى بيانات الحركة لحساب خطواتك أثناء التحدي.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -278,6 +298,7 @@
 				DEVELOPMENT_TEAM = DRBC8YYF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMotionUsageDescription = "نحتاج الوصول إالى بيانات الحركة لحساب خطواتك أثناء التحدي.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

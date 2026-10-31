@@ -222,11 +222,11 @@ struct WeeklyPerformanceView: View {
         HStack(spacing: 12) {
             Spacer(minLength: 0)
 
-            VStack(alignment: .trailing, spacing: 0) {
+            VStack(alignment: .trailing, spacing: 2) {
                 Text(steps.formatted())
                     .font(.system(size: 24, weight: .bold))
 
-                Text("خطواتك هذا الأسبوع")
+                Text("مجموع خطواتك")
                     .font(.system(size: 11, weight: .semibold))
             }
             .foregroundStyle(primaryText)
@@ -240,11 +240,11 @@ struct WeeklyPerformanceView: View {
                         .stroke(purple, lineWidth: 3)
                 }
         }
-        .padding(.leading, 4)
-        .padding(.trailing, 0)
-        .frame(width: 220, height: 48)
+        .padding(.leading, 3)
+        .padding(.trailing, 5)
+        .frame(width: 230, height: 58)
         .background {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 27)
                 .fill(cardColor)
                 .stroke(
                     lightPurple.opacity(0.4),
@@ -257,7 +257,7 @@ struct WeeklyPerformanceView: View {
 
     private var performanceTitle: some View {
         Text("أداؤك هذا الأسبوع")
-            .font(.system(size: 28, weight: .bold))
+            .font(.system(size: 35, weight: .bold))
             .foregroundStyle(primaryText)
             .lineLimit(1)
             .minimumScaleFactor(0.8)
@@ -291,7 +291,7 @@ struct WeeklyPerformanceView: View {
                                     )
                                     .font(
                                         .system(
-                                            size: 10,
+                                            size: 11,
                                             weight: .semibold
                                         )
                                     )
@@ -319,13 +319,13 @@ struct WeeklyPerformanceView: View {
             }
             .frame(height: 184)
             .padding(.horizontal, 12)
-            .padding(.top, 16)
+            .padding(.top, 15)
             .background {
-                RoundedRectangle(cornerRadius: 20)
+                RoundedRectangle(cornerRadius: 25)
                     .fill(lightPurple)
             }
             .clipShape(
-                RoundedRectangle(cornerRadius: 20)
+                RoundedRectangle(cornerRadius: 25)
             )
 
             HStack(spacing: 8) {
@@ -335,7 +335,7 @@ struct WeeklyPerformanceView: View {
                 ) { _, item in
                     VStack(spacing: 3) {
                         Text(item.day)
-                            .font(.system(size: 9))
+                            .font(.system(size: 12))
                             .foregroundStyle(primaryText)
                             .lineLimit(1)
                             .minimumScaleFactor(0.65)
@@ -367,12 +367,13 @@ struct WeeklyPerformanceView: View {
                     .fill(purple.opacity(0.25))
                     .frame(width: 8, height: 8)
 
-                Text("لا توجد نتيجة مسجلة")
-                    .font(.system(size: 10))
+                Text("لا توجد نتيجة مسجلة حاليا")
+                    .font(.system(size: 12))
                     .foregroundStyle(secondaryText)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
-            .padding(.horizontal, 4)
+            .padding(.horizontal, 16)
+            .padding(.top, 2)
         }
         .frame(maxWidth: .infinity)
     }
@@ -403,7 +404,7 @@ struct WeeklyPerformanceView: View {
                             : "minus"
                     )
                     .font(.system(size: 14))
-                    .foregroundStyle(darkText)
+                    .foregroundStyle(Color("mainBG"))
                     .frame(maxWidth: .infinity)
                     .frame(height: 24)
                     .background {
@@ -416,7 +417,6 @@ struct WeeklyPerformanceView: View {
                 \.layoutDirection,
                 .rightToLeft
             )
-
             HStack {
                 Spacer()
 
@@ -432,10 +432,11 @@ struct WeeklyPerformanceView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 96)
         .background {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 25)
                 .fill(cardColor)
                 .stroke(primaryText, lineWidth: 1)
         }
+        .padding(.top, -15)
     }
 
     // MARK: - Attention Accuracy
@@ -445,10 +446,10 @@ struct WeeklyPerformanceView: View {
             Spacer(minLength: 0)
 
             VStack(alignment: .trailing, spacing: 4) {
-                Text("دقة الانتباه")
+                Text("كفاءة الإنتباه")
                     .font(.system(size: 16, weight: .bold))
 
-                Text("نسبة الاستجابات الصحيحة أثناء التحديات")
+                Text("تقيس سرعة استجابتك ودقتها أثناء التحديات")
                     .font(.system(size: 10))
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
@@ -491,9 +492,9 @@ struct WeeklyPerformanceView: View {
         }
         .padding(.horizontal, 12)
         .frame(maxWidth: .infinity)
-        .frame(height: 96)
+        .frame(height: 85)
         .background {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 25)
                 .fill(cardColor)
                 .stroke(primaryText, lineWidth: 1)
         }

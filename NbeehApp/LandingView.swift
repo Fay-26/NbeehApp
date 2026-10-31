@@ -30,27 +30,27 @@ struct LandingView: View {
                         ZStack {
                             Image("stars")
                                 .resizable()
-                                .frame(width: 24, height: 24)
-                                .offset(x: 120, y: -80)
+                                .frame(width: 24, height: 28)
+                                .offset(x: 160, y: -90)
 
                             Image("stars2")
                                 .resizable()
                                 .frame(width: 28, height: 28)
-                                .offset(x: 140, y: 10)
+                                .offset(x: 150, y: 30)
 
                             Image("stars3")
                                 .resizable()
                                 .frame(width: 32, height: 32)
-                                .offset(x: -120, y: -30)
+                                .offset(x: -150, y: -30)
 
                             Image("stars")
                                 .resizable()
                                 .frame(width: 20, height: 20)
-                                .offset(x: -100, y: 50)
+                                .offset(x: -120, y: 50)
 
                             VStack(spacing: 8) {
                                 Text("اهلا بك في")
-                                    .font(.system(size: 38, weight: .medium))
+                                    .font(.system(size: 55, weight: .medium))
                                     .foregroundColor(Color("textbig"))
 
                                 Text("نبيه")

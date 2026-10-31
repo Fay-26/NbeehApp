@@ -36,14 +36,15 @@ struct AboutAppView: View {
                     ) {
 
                         Text("عن التطبيق")
-                            .font(.system(size: 20, weight: .bold))
+                            .font(.system(size: 22, weight: .bold))
                             .foregroundColor(Color("textsmalldark"))
 
                         Text("""
-                        يهدف نبيه إلى مساعدة المستخدم على تحسين انتباهه وتقليل التشتت الناتج عن كثرة المشتتات الرقمية.
+                            يهدف نبيه إلى مساعدة المستخدم على تحسين انتباهه والحد من التشتت الناتج عن كثرة المشتتات الرقمية.
 
-                        من خلال تدريب الانتباه الانتقائي للتركيز على عناصر محددة وتجاهل المشتتات، والانتباه المستمر للمحافظة على التركيز لفترة من الوقت.
-                        """)
+                            ويركّز التطبيق على تنمية نوعين من الانتباه: الانتباه الانتقائي، من خلال التركيز على عناصر محددة وتجاهل المشتتات، والانتباه المستمر، من خلال المحافظة على التركيز لفترة زمنية.
+                            """)
+                        
                         .font(.system(size: 14, weight: .regular))
                         .foregroundColor(Color("textsmalldark"))
                         .multilineTextAlignment(.trailing)
@@ -62,7 +63,7 @@ struct AboutAppView: View {
                     ) {
 
                         Text("كيف تستخدم التطبيق؟")
-                            .font(.system(size: 18, weight: .bold))
+                            .font(.system(size: 22, weight: .bold))
                             .foregroundColor(Color("textsmalldark"))
 
                         // الخطوة الأولى
@@ -81,7 +82,7 @@ struct AboutAppView: View {
                                 .font(.system(size: 20))
                                 .foregroundColor(Color("textsmalldark"))
                                 .frame(width: 20)
-                                .padding(.top, 20)
+                                .padding(.top, 15)
                         }
 
                         // الخطوة الثانية
@@ -90,7 +91,7 @@ struct AboutAppView: View {
                             spacing: 12
                         ) {
 
-                            Text("اسمع للأصوات المستهدفة لتدريب انتباهك السمعي واستجب لها أثناء المشي.")
+                            Text("اسمع للأصوات المستهدفة لتدريب إنتباهك المستمر واستجب لها أثناء المشي.")
                                 .font(.system(size: 13, weight: .medium))
                                 .foregroundColor(Color("textsmalldark"))
                                 .multilineTextAlignment(.trailing)
@@ -107,7 +108,7 @@ struct AboutAppView: View {
                             spacing: 12
                         ) {
 
-                            Text("أكمل نشاط الانتباه البصري بعد إنهاء خطواتك.")
+                            Text("أكمل نشاط الإنتباه الإنتقائي بعد إنهاء خطواتك.")
                                 .font(.system(size: 13, weight: .medium))
                                 .foregroundColor(Color("textsmalldark"))
                                 .multilineTextAlignment(.trailing)

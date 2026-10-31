@@ -184,7 +184,7 @@ struct QuizView: View {
                 showExitAlert = true
             } label: {
                 Image(systemName: "xmark")
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(.system(size: 30, weight: .semibold))
                     .foregroundStyle(Color.black)
                     .frame(width: 48, height: 48)
                     .background(
@@ -201,14 +201,14 @@ struct QuizView: View {
 
             Spacer()
 
-            Text("تحدي الانتباه السمعي")
-                .font(.system(size: 25, weight: .semibold))
+            Text("تحدي الإنتباه المستمر")
+                .font(.system(size: 22, weight: .semibold))
                 .foregroundStyle(Color("mainBG"))
                 .padding(.horizontal, 12)
                 .padding(.vertical, 18)
                 .background(
                     Color("box"),
-                    in: RoundedRectangle(cornerRadius: 20)
+                    in: RoundedRectangle(cornerRadius: 25)
                 )
 
             Spacer()
@@ -246,16 +246,16 @@ struct QuizView: View {
     // MARK: - السؤال
 
     private var questionView: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 15) {
             Text(currentQuestion.question)
-                .font(.system(size: 19, weight: .medium))
+                .font(.system(size: 26, weight: .medium))
                 .foregroundStyle(questionTextColor)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
-                .frame(minHeight: 135)
-                .padding(.horizontal, 16)
+                .frame(minHeight: 170)
+                .padding(.horizontal, 40)
                 .background(questionColor)
-                .clipShape(RoundedRectangle(cornerRadius: 32))
+                .clipShape(RoundedRectangle(cornerRadius: 33))
 
             Text(
                 "دقة الإجابات: \(Int(challengeResult.accuracy.rounded()))٪"
@@ -263,7 +263,7 @@ struct QuizView: View {
             .font(.system(size: 13, weight: .medium))
             .foregroundStyle(questionTextColor.opacity(0.8))
         }
-        .padding(.top, 34)
+        .padding(.top, 60)
     }
 
  
@@ -276,10 +276,10 @@ struct QuizView: View {
                     selectAnswer(index)
                 } label: {
                     Text(currentQuestion.options[index])
-                        .font(.system(size: 16))
+                        .font(.system(size: 20))
                         .foregroundStyle(answerTextColor)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 48)
+                        .frame(height: 70)
                         .background(
                             selectedAnswer == index
                                 ? buttonColor
@@ -294,11 +294,11 @@ struct QuizView: View {
                 }
                 .buttonStyle(.plain)
                 .frame(maxWidth: .infinity)
-                .contentShape(Capsule())
+                .contentShape(RoundedRectangle(cornerRadius: 30))
                 .disabled(hasAnswered || hasStartedNavigation)
             }
         }
-        .padding(.horizontal, 2)
+        .padding(.horizontal, 14)
     }
 
 

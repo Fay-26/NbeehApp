@@ -64,7 +64,7 @@ struct ChallengeResultsView: View {
                                 .font(.system(size: 33, weight: .bold))
                                 .foregroundStyle(Color("mainBG"))
                                 .padding(.bottom, 24)
-                            Text("الانتباه السمعي:")
+                            Text("الإنتباه المستمر :")
                                 .font(.system(size: 23))
                                 .foregroundStyle(Color("mainBG"))
                             HStack(spacing: 0) {
@@ -75,7 +75,7 @@ struct ChallengeResultsView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.top, 20)
                             .padding(.bottom, 24)
-                            Text("الانتباه البصري:")
+                            Text("الإنتباه الإنتقائي :")
                                 .font(.system(size: 23))
                                 .foregroundStyle(Color("mainBG"))
                             HStack(spacing: 0) {
@@ -97,13 +97,6 @@ struct ChallengeResultsView: View {
                             }
                             .foregroundStyle(Color("mainBG"))
                             .padding(.top, 18)
-                            HStack {
-                                Text("\(max(0, visualTotalErrors))")
-                                    .font(.system(size: 20, weight: .bold))
-                                Spacer()
-                                Text("الأخطاء البصرية")
-                                    .font(.system(size: 18))
-                            }
                             .foregroundStyle(Color("mainBG"))
                             .padding(.top, 12)
                             if visualAverageReactionTime > 0 {

@@ -11,27 +11,13 @@ var body: some View {
 ZStack {
 Color("mainBG")
 .ignoresSafeArea()
-VStack(spacing: 0) {
-HStack {
-Button(action: {}) {
-Image(systemName: "xmark")
-.font(.system(size: 30))
-.foregroundStyle(.black)
-.frame(width: 52, height: 52)
-.background(Color("box"))
-.clipShape(Circle())
-}
-.buttonStyle(.plain)
-Spacer()
-}
-.padding(.leading, 32)
-.padding(.top, 20)
+VStack(spacing: 5) {
 Text("فنااان!")
-.font(.system(size: 64))
+.font(.system(size: 80))
 .foregroundStyle(Color("textbig"))
-.padding(.top, 8)
-Text("خلصت من مهمة الإنتباه السمعي")
-.font(.system(size: 26))
+.padding(.top, 60)
+Text("خلصت من مهمة الإنتباه المستمر")
+.font(.system(size: 24))
 .multilineTextAlignment(.center)
 .foregroundStyle(Color("textsmall").opacity(0.8))
 .padding(.top, 28)
@@ -39,7 +25,7 @@ Spacer()
 Image("smart")
 .resizable()
 .scaledToFit()
-.frame(width: 300, height: 250)
+.frame(width: 320, height: 270)
 Text("وعشان تدرب تركيزك أكثر كمل اخر جزء من التحدي")
 .font(.system(size: 23))
 .multilineTextAlignment(.center)
@@ -50,20 +36,20 @@ NavigationLink {
 VisualAttentionGame()
 .navigationBarBackButtonHidden(true)
 } label: {
-Text("مهمة الانتباه البصري")
-.font(.system(size: 24))
+Text("مهمة الإنتباه الإنتقائي")
+.font(.system(size: 25))
 .foregroundStyle(Color("textbig"))
-.frame(width: 220, height: 70)
+.frame(width: 230, height: 80)
 .background(Color("botton"))
 .clipShape(
-RoundedRectangle(cornerRadius: 30)
+RoundedRectangle(cornerRadius: 25)
 )
 .contentShape(
 RoundedRectangle(cornerRadius: 30)
 )
 }
 .buttonStyle(.plain)
-.padding(.bottom, 45)
+.padding(.bottom, 30)
 }
 }
 .preferredColorScheme(.dark)

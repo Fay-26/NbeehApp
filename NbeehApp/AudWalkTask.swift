@@ -325,59 +325,56 @@ struct AudWalkTask: View {
 
                 Spacer()
 
-                Text("تحدي الانتباه السمعي")
-                    .font(.system(size: 25, weight: .semibold))
+                Text("تحدي الإنتباه المستمر")
+                    .font(.system(size: 22, weight: .semibold))
                     .foregroundStyle(Color("mainBG"))
                     .padding(.horizontal, 12)
                     .padding(.vertical, 18)
                     .background(
                         Color("box"),
-                        in: RoundedRectangle(cornerRadius: 20)
+                        in: RoundedRectangle(cornerRadius: 25)
                     )
 
                 Spacer()
 
-                Image(systemName: "ear.badge.waveform")
+                Image(systemName: "ear.and.waveform")
                     .font(.system(size: 35, weight: .semibold))
                     .foregroundStyle(Color("box"))
             }
             .frame(maxWidth: .infinity)
-            .padding(.horizontal, 8)
+            .padding(.horizontal, 15)
 
             VStack(spacing: 10) {
                 HStack {
                     Spacer()
 
                     Text("مهمتك:")
-                        .font(.system(size: 18, weight: .medium))
+                        .font(.system(size: 20, weight: .medium))
                         .foregroundStyle(Color("textbig"))
                 }
 
                 Text("انتبه لصوت العصفور")
-                    .font(.system(size: 24, weight: .semibold))
+                    .font(.system(size: 30, weight: .semibold))
                     .foregroundStyle(Color("textbig"))
                     .frame(maxWidth: .infinity)
 
                 Text("لما تسمع صوت العصفور اضغط الزر")
-                    .font(.system(size: 12))
+                    .font(.system(size: 15))
                     .foregroundStyle(Color("textbig"))
                     .frame(maxWidth: .infinity)
 
-                Text("الهدف: \(currentStepGoal.formatted()) خطوة")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundStyle(Color("textbig"))
             }
             .frame(maxWidth: .infinity)
-            .padding(.top, 60)
-            .padding(.horizontal, 8)
+            .padding(.top, 70)
+            .padding(.horizontal, 20)
 
-            VStack(spacing: 8) {
+            VStack(spacing: 10) {
                 Text("\(remainingSteps.formatted())")
                     .font(.system(size: 68, weight: .bold))
                     .foregroundStyle(Color("mainBG"))
 
-                Text("الخطوات المتبقية")
-                    .font(.system(size: 12, weight: .medium))
+                Text("العد التنازلي لخطواتك")
+                    .font(.system(size: 15, weight: .medium))
                     .foregroundStyle(Color("mainBG"))
             }
             .frame(width: 277, height: 209)
@@ -389,9 +386,9 @@ struct AudWalkTask: View {
             }
             .background(
                 Color("box"),
-                in: RoundedRectangle(cornerRadius: 30)
+                in: RoundedRectangle(cornerRadius: 50)
             )
-            .padding(.top, 40)
+            .padding(.top, 80)
             .frame(maxWidth: .infinity)
 
             Button {
@@ -405,6 +402,8 @@ struct AudWalkTask: View {
                         Color("botton"),
                         in: RoundedRectangle(cornerRadius: 30)
                     )
+                    .padding(.top, 50)
+
             }
             .disabled(
                 !isRoundRunning ||
@@ -479,6 +478,7 @@ struct AudWalkTask: View {
         } message: {
             Text("تأكد من إضافة ملفات bird.mp3 و dog.mp3 و cat.mp3 إلى موارد التطبيق.")
         }
+        
     }
 }
 

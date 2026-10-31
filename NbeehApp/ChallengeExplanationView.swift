@@ -24,20 +24,20 @@ struct ChallengeExplanationView: View {
 
                 Spacer()
 
-                Text("امشِ. اسمع. ركّز!")
-                    .font(.system(size: 40))
+                Text("امشِ, اسمع, ركّز!")
+                    .font(.system(size: 50))
                     .foregroundColor(Color("textbig"))
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 30)
 
                 VStack(
                     alignment: .trailing,
-                    spacing: 24
+                    spacing: 70
                 ) {
 
                     // الخطوة الأولى: المشي
                     HStack(
-                        alignment: .top,
-                        spacing: 16
+                        alignment: .center,
+                        spacing: 20
                     ) {
 
                         Text("امشِ عدد الخطوات المطلوب في كل مرحلة.")
@@ -49,22 +49,21 @@ struct ChallengeExplanationView: View {
                             )
                             .foregroundColor(Color("textsmalldark"))
                             .multilineTextAlignment(.trailing)
-                            .padding(.top, 30)
 
                         Image(systemName: "figure.walk")
                             .font(.system(size: 25))
                             .foregroundColor(Color("textsmalldark"))
-                            .frame(width: 24)
-                            .padding(.top, 30)
+                            .frame(width: 22)
+                            .padding(.top, 10)
                     }
 
                     // الخطوة الثانية: الانتباه السمعي
                     HStack(
-                        alignment: .top,
-                        spacing: 16
+                        alignment: .center,
+                        spacing: 20
                     ) {
 
-                        Text("اسمع للأصوات المستهدفة لتدريب انتباهك السمعي واستجب لها أثناء المشي.")
+                        Text("اسمع للأصوات المستهدفة لتدريب إنتباهك المستمر واستجب لها أثناء المشي.")
                             .font(
                                 .system(
                                     size: 20,
@@ -82,11 +81,11 @@ struct ChallengeExplanationView: View {
 
                     // الخطوة الثالثة: الانتباه البصري
                     HStack(
-                        alignment: .top,
-                        spacing: 16
+                        alignment: .center,
+                        spacing: 20
                     ) {
 
-                        Text("أكمل نشاط الانتباه البصري بعد إنهاء خطواتك.")
+                        Text("أكمل نشاط الإنتباه الإنتقائي بعد إنهاء خطواتك.")
                             .font(
                                 .system(
                                     size: 20,
@@ -105,7 +104,9 @@ struct ChallengeExplanationView: View {
                 .padding(24)
                 .background(Color("box"))
                 .cornerRadius(50)
-                .padding(.horizontal, 40)
+                .padding(.horizontal, 30)
+                
+                Spacer()
 
                 Text("أكمل تحديك اليومي ودَرّب انتباهك")
                     .font(
@@ -115,8 +116,6 @@ struct ChallengeExplanationView: View {
                         )
                     )
                     .foregroundColor(Color("textsmall"))
-
-                Spacer()
 
                 // الانتقال إلى MainView
                 NavigationLink {

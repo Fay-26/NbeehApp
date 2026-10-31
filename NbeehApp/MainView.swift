@@ -21,7 +21,7 @@ var body: some View {
 ZStack(alignment: .bottom) {
 Color("mainBG")
 .ignoresSafeArea()
-VStack(spacing: 20) {
+VStack(spacing: 40) {
 // الشريط العلوي
 HStack {
 NavigationLink(
@@ -36,13 +36,13 @@ Image(systemName: "questionmark")
 }
 Spacer()
 Text("خلك نبيه!")
-.font(.system(size: 26, weight: .bold))
+.font(.system(size: 30, weight: .bold))
 .foregroundColor(Color("textbig"))
 }
 .padding(.horizontal, 24)
-.padding(.top, 10)
+.padding(.top, 30)
 // المستوى والستريك
-HStack(spacing: 16) {
+HStack(spacing: 20) {
 VStack(alignment: .trailing, spacing: 8) {
 HStack {
 Text("المستوى \(progress.currentLevel)")
@@ -76,24 +76,25 @@ Text("الستريك الحالي")
 .background(Color("box"))
 .cornerRadius(30)
 }
-.padding(.horizontal, 24)
+.padding(.horizontal, 27)
 // صورة الشخصية
-Image("run")
+Image("run2")
 .resizable()
 .scaledToFit()
-.frame(height: 150)
-.padding(.top, 70)
+.frame(height: 160)
+.padding(.top, 20)
 // النص التحفيزي
-VStack(spacing: 6) {
+VStack(spacing: 7) {
 Text("مستعد لتحدي اليوم ؟")
 .font(.system(size: 20, weight: .bold))
 .foregroundColor(Color("textbig"))
 Text("خل انتباهك حاضر وخذها خطوة بخطوة.")
 .font(.system(size: 15, weight: .medium))
 .foregroundColor(Color("textsmall"))
+.padding(.top,3)
 }
 // بطاقة تحدي اليوم
-VStack(alignment: .trailing, spacing: 20) {
+VStack(alignment: .trailing, spacing: 10) {
 HStack(alignment: .top) {
 VStack(alignment: .trailing, spacing: 5) {
 Text(progress.dailyMission.title)

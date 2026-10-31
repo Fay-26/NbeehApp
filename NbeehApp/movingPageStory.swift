@@ -10,7 +10,6 @@ struct movingPageStory: View {
 
     // MARK: - التنقل والحالة
 
-    @State private var showExitConfirmation = false
     @State private var goToMainView = false
     @State private var goToQuizView = false
 
@@ -20,40 +19,19 @@ struct movingPageStory: View {
 
             VStack(spacing: 0) {
 
-                // MARK: - زر الخروج
-
-                HStack {
-
-                    Button {
-                        showExitConfirmation = true
-                    } label: {
-
-                        Image(systemName: "xmark")
-                            .font(.system(size: 30, weight: .medium))
-                            .foregroundStyle(Color("taskBG"))
-                            .frame(width: 48, height: 48)
-                            .background(Color("box"), in: Circle())
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel("الخروج من التحدي")
-
-                    Spacer()
-                }
-                .padding(.horizontal, 8)
-
                 // MARK: - عنوان النجاح
 
                 VStack(spacing: 8) {
 
                     Text("رهييب!")
-                        .font(.system(size: 72, weight: .bold))
+                        .font(.system(size: 80, weight: .bold))
                         .foregroundStyle(Color("textbig"))
 
                     Text("خلصت خطواتك")
                         .font(.system(size: 28, weight: .regular))
                         .foregroundStyle(Color("textsmall"))
                 }
-                .padding(.top, 12)
+                .padding(.top, 70)
 
                 // MARK: - النجوم والرقم
 
@@ -64,7 +42,7 @@ struct movingPageStory: View {
                         .scaledToFit()
 
                     Text("0")
-                        .font(.system(size: 64, weight: .bold))
+                        .font(.system(size: 70, weight: .bold))
                         .foregroundStyle(Color("textbig"))
                 }
                 .frame(
@@ -80,8 +58,8 @@ struct movingPageStory: View {
                     .font(.system(size: 24, weight: .regular))
                     .foregroundStyle(Color("textsmall"))
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, 8)
-                    .padding(.top, 16)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 30)
 
                 Spacer(minLength: 20)
 
@@ -92,7 +70,7 @@ struct movingPageStory: View {
                 } label: {
 
                     Text("جاهز")
-                        .font(.system(size: 30, weight: .semibold))
+                        .font(.system(size: 35, weight: .semibold))
                         .foregroundStyle(.white)
                         .frame(width: 245, height: 96)
                         .background(
@@ -112,25 +90,6 @@ struct movingPageStory: View {
             )
             .background(Color("mainBG"))
 
-            // MARK: - تأكيد الخروج
-
-            .alert(
-                "هل أنت متأكد من الخروج؟",
-                isPresented: $showExitConfirmation
-            ) {
-
-                Button("استمرار", role: .cancel) {
-                    // إغلاق التنبيه والبقاء في الصفحة
-                }
-
-                Button("خروج", role: .destructive) {
-                    goToMainView = true
-                }
-
-            } message: {
-
-                Text("الخروج يؤدي إلى إعادة المرحلة من جديد.")
-            }
 
             // MARK: - الانتقال إلى MainView
 

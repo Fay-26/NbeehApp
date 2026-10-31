@@ -27,13 +27,13 @@ weight: .bold
 )
 .multilineTextAlignment(.center)
 .foregroundColor(Color("textbig"))
-.padding(.bottom, 40)
+.padding(.bottom, 80)
 Image("run2")
 .resizable()
 .scaledToFit()
-.frame(width: 220, height: 220)
-.padding(.bottom, 80)
-VStack(spacing: 16) {
+.frame(width: 260, height: 260)
+.padding(.bottom, )
+VStack(spacing: 6) {
 // الانتقال إلى شرح التحدي
 NavigationLink {
 ChallengeExplanationView()

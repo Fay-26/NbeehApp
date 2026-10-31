@@ -11,42 +11,12 @@ struct movingPageAud: View {
 
     // MARK: - التنقل والحالة
 
-    @State private var showExitConfirmation = false
     @State private var goToMainView = false
     @State private var goToVisualAttentionGame = false
 
     var body: some View {
 
         VStack(spacing: 0) {
-
-            // MARK: - زر الخروج
-
-            HStack {
-
-                Button {
-                    showExitConfirmation = true
-                } label: {
-
-                    Image(systemName: "xmark")
-                        .font(
-                            .system(
-                                size: 30,
-                                weight: .semibold
-                            )
-                        )
-                        .foregroundStyle(Color("taskBG"))
-                        .frame(width: 48, height: 48)
-                        .background(
-                            Color("box"),
-                            in: Circle()
-                        )
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel("الخروج من التحدي")
-
-                Spacer()
-            }
-            .padding(.horizontal, 8)
 
             // MARK: - عنوان النجاح
 
@@ -55,7 +25,7 @@ struct movingPageAud: View {
                 Text("رهييب!")
                     .font(
                         .system(
-                            size: 72,
+                            size: 80,
                             weight: .bold
                         )
                     )
@@ -70,7 +40,7 @@ struct movingPageAud: View {
                     )
                     .foregroundStyle(Color("textsmall"))
             }
-            .padding(.top, 40)
+            .padding(.top, 70)
 
             // MARK: - الصورة والرقم
 
@@ -83,7 +53,7 @@ struct movingPageAud: View {
                 Text("0")
                     .font(
                         .system(
-                            size: 64,
+                            size: 70,
                             weight: .bold
                         )
                     )
@@ -105,7 +75,7 @@ struct movingPageAud: View {
                 .foregroundStyle(Color("textsmall"))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
-                .padding(.top, 8)
+                .padding(.top, 30)
 
             // MARK: - زر مهمة الانتباه البصري
 
@@ -113,20 +83,20 @@ struct movingPageAud: View {
                 goToVisualAttentionGame = true
             } label: {
 
-                Text("مهمة الانتباه البصري")
+                Text("مهمة الإنتباه الإنتقائي")
                     .font(
                         .system(
-                            size: 20,
+                            size: 25,
                             weight: .semibold
                         )
                     )
                     .foregroundStyle(.white)
-                    .frame(width: 220, height: 70)
+                    .frame(width: 230, height: 80)
                     .background(Color("botton"))
                     .clipShape(
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 25)
                     )
-                    .padding(.top, 20)
+                    .padding(.top, 30)
             }
             .buttonStyle(.plain)
 
@@ -139,36 +109,8 @@ struct movingPageAud: View {
             maxHeight: .infinity,
             alignment: .top
         )
+        
         .background(Color("mainBG"))
-
-        // MARK: - تأكيد الخروج
-
-        .alert(
-            "هل أنت متأكد من الخروج؟",
-            isPresented: $showExitConfirmation
-        ) {
-
-            Button("استمرار", role: .cancel) {
-                // البقاء في الصفحة الحالية
-            }
-
-            Button("خروج", role: .destructive) {
-                goToMainView = true
-            }
-
-        } message: {
-
-            Text("الخروج يؤدي إلى إعادة المرحلة من جديد.")
-        }
-
-        // MARK: - الانتقال إلى MainView
-
-        .navigationDestination(isPresented: $goToMainView) {
-
-            MainView()
-                .navigationBarBackButtonHidden(true)
-        }
-
         // MARK: - الانتقال إلى تحدي الانتباه البصري
 
         .navigationDestination(

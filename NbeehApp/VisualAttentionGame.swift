@@ -111,14 +111,11 @@ struct VisualAttentionGame: View {
 
                 headerView
 
-                targetPromptView
-                    .padding(.top, 20)
-
-                Spacer(minLength: 18)
+                Spacer(minLength: 15)
 
                 gameBoard
 
-                Spacer(minLength: 18)
+                Spacer(minLength: 15)
             }
         }
         .preferredColorScheme(.dark)
@@ -194,7 +191,7 @@ struct VisualAttentionGame: View {
                 showExitAlert = true
             } label: {
                 Image(systemName: "xmark")
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(.system(size: 30, weight: .semibold))
                     .foregroundStyle(Color.black)
                     .frame(width: 48, height: 48)
                     .background(
@@ -211,14 +208,14 @@ struct VisualAttentionGame: View {
 
             Spacer()
 
-            Text("تحدي الانتباه البصري")
-                .font(.system(size: 23, weight: .semibold))
+            Text("تحدي الإنتباه الإنتقائي")
+                .font(.system(size: 22, weight: .semibold))
                 .foregroundStyle(Color("mainBG"))
                 .padding(.horizontal, 12)
                 .padding(.vertical, 18)
                 .background(
                     Color("box"),
-                    in: RoundedRectangle(cornerRadius: 20)
+                    in: RoundedRectangle(cornerRadius: 25)
                 )
 
             Spacer()
@@ -228,29 +225,8 @@ struct VisualAttentionGame: View {
                 .foregroundStyle(Color("box"))
                 .accessibilityHidden(true)
         }
-        .padding(.horizontal, 18)
-        .padding(.top, 16)
-    }
-
-    // MARK: - تعليمات الجولة
-
-    private var targetPromptView: some View {
-        VStack(spacing: 10) {
-            Text("الجولة \(roundNumber) من 5")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(Color("mainBG"))
-
-            Text(
-                isFinished
-                    ? "أحسنتِ! أنهيتِ التحدي"
-                    : targetShapeTitle
-            )
-            .font(.system(size: 24, weight: .bold))
-            .foregroundStyle(Color("mainBG"))
-            .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 15)
+        .padding(.top, 10)
     }
 
     // MARK: - لوحة اللعبة
@@ -266,7 +242,7 @@ struct VisualAttentionGame: View {
                     Text(
                         saveFailed
                             ? "انتهت الجولات الخمس، لكن تعذّر حفظ النتائج.\nاضغطي هنا لعرض النتائج"
-                            : "انتهت الجولات الخمس!\nاضغطي هنا لعرض النتائج"
+                            : "انتهت الجولات الخمس!\nاضغط هنا لعرض النتائج"
                     )
                     .font(.system(size: 26, weight: .semibold))
                     .foregroundStyle(Color("mainBG"))
@@ -305,25 +281,13 @@ struct VisualAttentionGame: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 650)
+        .frame(height: 580)
         .clipShape(
             RoundedRectangle(cornerRadius: 50)
         )
         .padding(.horizontal, 30)
     }
-
-    // MARK: - اسم الشكل المطلوب
-
-    private var targetShapeTitle: String {
-        switch targetShape {
-        case .circle:
-            return "ابحثي عن الدائرة"
-        case .triangle:
-            return "ابحثي عن المثلث"
-        case .square:
-            return "ابحثي عن المربع"
-        }
-    }
+   
 
     private func shapeAccessibilityName(
         _ shape: GameShape

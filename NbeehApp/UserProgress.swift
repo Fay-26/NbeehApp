@@ -15,7 +15,7 @@ enum DailyMission: String, Codable {
     var title: String {
         switch self {
         case .selectiveAttention:
-            return "تحدي الانتباه السمعي"
+            return "تحدي اليوم"
         case .sustainedAttention:
             return "تحدي الانتباه المستمر"
         }
@@ -24,7 +24,7 @@ enum DailyMission: String, Codable {
     var description: String {
         switch self {
         case .selectiveAttention:
-            return "انتبه لصوت العصفور واضغط عندما تسمعه."
+            return "امشِ ودرّب انتباهك"
         case .sustainedAttention:
             return "استمع إلى قصة سارة وأكمل هدف خطواتك."
         }

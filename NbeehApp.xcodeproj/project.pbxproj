@@ -265,6 +265,7 @@
 				DEVELOPMENT_TEAM = DRBC8YYF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSMotionUsageDescription = "نحتاج الوصول إالى بيانات الحركة لحساب خطواتك أثناء التحدي.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -298,6 +299,7 @@
 				DEVELOPMENT_TEAM = DRBC8YYF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSMotionUsageDescription = "نحتاج الوصول إالى بيانات الحركة لحساب خطواتك أثناء التحدي.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

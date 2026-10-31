@@ -96,12 +96,13 @@ Text("خل انتباهك حاضر وخذها خطوة بخطوة.")
 // بطاقة تحدي اليوم
 VStack(alignment: .trailing, spacing: 10) {
 HStack(alignment: .top) {
-VStack(alignment: .trailing, spacing: 5) {
+VStack(alignment: .trailing, spacing: 10) {
 Text(progress.dailyMission.title)
-.font(.system(size: 20, weight: .bold))
+.font(.system(size: 10, weight: .bold))
 .foregroundColor(Color("textsmalldark"))
+.padding(.top,-5)
 Text("\(progress.dailyStepGoal.formatted()) خطوة")
-.font(.system(size: 16, weight: .semibold))
+.font(.system(size: 20, weight: .bold))
 .foregroundColor(Color("textsmalldark"))
 Text(progress.dailyMission.description)
 .font(.system(size: 13, weight: .medium))
@@ -110,14 +111,14 @@ Text(progress.dailyMission.description)
 }
 Image(
 systemName: progress.dailyMission == .selectiveAttention
-? "ear.badge.waveform"
+? "shoeprints.fill"
 : "headphones"
 )
-.font(.system(size: 20))
-.foregroundColor(Color("textsmall"))
+.font(.system(size: 18))
+.foregroundColor(Color("box"))
 .padding(10)
 .background(Color("taskBG"))
-.cornerRadius(15)
+.cornerRadius(16)
 }
 // فتح تحدٍّ عشوائي دون تكرار التحدي السابق مباشرة
 Button {
@@ -137,7 +138,7 @@ lastOpenedChallenge = nextChallenge
 isShowingChallenge = true
 } label: {
 Text("ابدأ التحدي")
-.font(.system(size: 20, weight: .semibold))
+.font(.system(size: 25, weight: .semibold))
 .foregroundColor(Color("textbig"))
 .frame(maxWidth: .infinity)
 .padding(.vertical, 25)

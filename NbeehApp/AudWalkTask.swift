@@ -4,6 +4,9 @@
 //
 //  Created by Fay Alabdulqader on 29/10/2026.
 //
+
+
+
 import SwiftUI
 import CoreMotion
 import AVFoundation
@@ -40,6 +43,8 @@ struct AudWalkTask: View {
     @State private var showStepError = false
     @State private var showAudioError = false
 
+    @State private var navigateToTabScreen = false
+
     @State private var audioPlayer: AVAudioPlayer?
     @State private var trialTask: Task<Void, Never>?
 
@@ -53,6 +58,24 @@ struct AudWalkTask: View {
 
     private var auditoryCorrectTotal: Int {
         correctCount + correctRejections
+    }
+
+    // Results message.
+    private var resultsMessage: String {
+        let completedSteps = currentStepGoal.formatted()
+        let correctAnswers = (correctCount + correctRejections).formatted()
+        let wrongAnswers = incorrectCount.formatted()
+        let missedAnswers = missedCount.formatted()
+
+        return """
+        أحسنت! أكملت \(completedSteps) خطوة.
+
+        الإجابات الصحيحة: \(correctAnswers)
+        الإجابات الخاطئة: \(wrongAnswers)
+        الأصوات المستهدفة التي فاتتك: \(missedAnswers)
+
+        هدفك القادم يعتمد على مستواك الحالي.
+        """
     }
 
     // MARK: - Start Challenge
@@ -286,9 +309,9 @@ struct AudWalkTask: View {
         showResults = true
     }
 
-    // MARK: - Cancel Challenge
+    // MARK: - Exit Challenge
 
-    private func cancelChallenge() {
+    private func exitChallenge() {
         isRoundRunning = false
         activeTrialID = UUID()
 
@@ -298,187 +321,202 @@ struct AudWalkTask: View {
         pedometer.stopUpdates()
         stopAudio()
 
-        dismiss()
+        hasStartedWalking = false
+        isTrialActive = false
+        didRespond = false
+
+        // Navigate to TabScreen.
+        navigateToTabScreen = true
     }
 
     // MARK: - View
 
     var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Button {
-                    showExitConfirmation = true
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 30, weight: .semibold))
-                        .foregroundStyle(.black)
-                        .frame(width: 48, height: 48)
-                        .background(
-                            Color(
-                                red: 194.0 / 255.0,
-                                green: 169.0 / 255.0,
-                                blue: 201.0 / 255.0
-                            ),
-                            in: Circle()
-                        )
-                }
+        NavigationStack {
+            VStack(spacing: 0) {
 
-                Spacer()
-
-                Text("تحدي الإنتباه المستمر")
-                    .font(.system(size: 22, weight: .semibold))
-                    .foregroundStyle(Color("mainBG"))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 18)
-                    .background(
-                        Color("box"),
-                        in: RoundedRectangle(cornerRadius: 25)
-                    )
-
-                Spacer()
-
-                Image(systemName: "ear.and.waveform")
-                    .font(.system(size: 35, weight: .semibold))
-                    .foregroundStyle(Color("box"))
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.horizontal, 15)
-
-            VStack(spacing: 10) {
                 HStack {
+                    Button {
+                        showExitConfirmation = true
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 30, weight: .semibold))
+                            .foregroundStyle(.black)
+                            .frame(width: 48, height: 48)
+                            .background(
+                                Color(
+                                    red: 194.0 / 255.0,
+                                    green: 169.0 / 255.0,
+                                    blue: 201.0 / 255.0
+                                ),
+                                in: Circle()
+                            )
+                    }
+
                     Spacer()
 
-                    Text("مهمتك:")
-                        .font(.system(size: 20, weight: .medium))
-                        .foregroundStyle(Color("textbig"))
+                    Text("تحدي الإنتباه المستمر")
+                        .font(.system(size: 22, weight: .semibold))
+                        .foregroundStyle(Color("mainBG"))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 18)
+                        .background(
+                            Color("box"),
+                            in: RoundedRectangle(cornerRadius: 25)
+                        )
+
+                    Spacer()
+
+                    Image(systemName: "ear.and.waveform")
+                        .font(.system(size: 35, weight: .semibold))
+                        .foregroundStyle(Color("box"))
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 15)
 
-                Text("انتبه لصوت العصفور")
-                    .font(.system(size: 30, weight: .semibold))
-                    .foregroundStyle(Color("textbig"))
-                    .frame(maxWidth: .infinity)
+                VStack(spacing: 10) {
+                    HStack {
+                        Spacer()
 
-                Text("لما تسمع صوت العصفور اضغط الزر")
-                    .font(.system(size: 15))
-                    .foregroundStyle(Color("textbig"))
-                    .frame(maxWidth: .infinity)
+                        Text("مهمتك:")
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundStyle(Color("textbig"))
+                    }
 
+                    Text("انتبه لصوت العصفور")
+                        .font(.system(size: 30, weight: .semibold))
+                        .foregroundStyle(Color("textbig"))
+                        .frame(maxWidth: .infinity)
+
+                    Text("لما تسمع صوت العصفور اضغط الزر")
+                        .font(.system(size: 15))
+                        .foregroundStyle(Color("textbig"))
+                        .frame(maxWidth: .infinity)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.top, 70)
+                .padding(.horizontal, 20)
+
+                VStack(spacing: 10) {
+                    Text("\(remainingSteps.formatted())")
+                        .font(.system(size: 68, weight: .bold))
+                        .foregroundStyle(Color("mainBG"))
+
+                    Text("العد التنازلي لخطواتك")
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundStyle(Color("mainBG"))
+                }
+                .frame(width: 277, height: 209)
+                .overlay(alignment: .topTrailing) {
+                    Image(systemName: "arrowshape.down")
+                        .font(.system(size: 40, weight: .medium))
+                        .foregroundStyle(Color("mainBG"))
+                        .padding(16)
+                }
+                .background(
+                    Color("box"),
+                    in: RoundedRectangle(cornerRadius: 50)
+                )
+                .padding(.top, 80)
+                .frame(maxWidth: .infinity)
+
+                Button {
+                    recordResponse()
+                } label: {
+                    Text("سمعت")
+                        .font(.system(size: 24, weight: .semibold))
+                        .foregroundStyle(Color("textbig"))
+                        .frame(width: 220, height: 70)
+                        .background(
+                            Color("botton"),
+                            in: RoundedRectangle(cornerRadius: 30)
+                        )
+                        .padding(.top, 50)
+                }
+                .disabled(
+                    !isRoundRunning ||
+                    !isTrialActive ||
+                    didRespond
+                )
+                .opacity(
+                    isRoundRunning && isTrialActive && !didRespond
+                        ? 1
+                        : 0.5
+                )
+                .padding(.top, 45)
+
+                Spacer(minLength: 20)
             }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 70)
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("taskBG"))
+            .navigationBarBackButtonHidden(true)
 
-            VStack(spacing: 10) {
-                Text("\(remainingSteps.formatted())")
-                    .font(.system(size: 68, weight: .bold))
-                    .foregroundStyle(Color("mainBG"))
-
-                Text("العد التنازلي لخطواتك")
-                    .font(.system(size: 15, weight: .medium))
-                    .foregroundStyle(Color("mainBG"))
+            .onAppear {
+                startChallenge()
             }
-            .frame(width: 277, height: 209)
-            .overlay(alignment: .topTrailing) {
-                Image(systemName: "arrowshape.down")
-                    .font(.system(size: 40, weight: .medium))
-                    .foregroundStyle(Color("mainBG"))
-                    .padding(16)
+
+            .onDisappear {
+                isRoundRunning = false
+                activeTrialID = UUID()
+
+                trialTask?.cancel()
+                trialTask = nil
+
+                pedometer.stopUpdates()
+                stopAudio()
             }
-            .background(
-                Color("box"),
-                in: RoundedRectangle(cornerRadius: 50)
-            )
-            .padding(.top, 80)
-            .frame(maxWidth: .infinity)
 
-            Button {
-                recordResponse()
-            } label: {
-                Text("سمعت")
-                    .font(.system(size: 24, weight: .semibold))
-                    .foregroundStyle(Color("textbig"))
-                    .frame(width: 220, height: 70)
-                    .background(
-                        Color("botton"),
-                        in: RoundedRectangle(cornerRadius: 30)
-                    )
-                    .padding(.top, 50)
-
+            // Navigate to TabScreen when exit is confirmed.
+            .navigationDestination(isPresented: $navigateToTabScreen) {
+                TabScreen()
+                    .navigationBarBackButtonHidden(true)
             }
-            .disabled(
-                !isRoundRunning ||
-                !isTrialActive ||
-                didRespond
-            )
-            .opacity(
-                isRoundRunning && isTrialActive && !didRespond
-                    ? 1
-                    : 0.5
-            )
-            .padding(.top, 45)
 
-            Spacer(minLength: 20)
+            // MARK: - Exit Confirmation
+
+            .alert(
+                "هل أنت متأكدة من الخروج؟",
+                isPresented: $showExitConfirmation
+            ) {
+                Button("استمرار", role: .cancel) {}
+
+                Button("خروج", role: .destructive) {
+                    exitChallenge()
+                }
+            } message: {
+                Text("الخروج يؤدي إلى إعادة المرحلة من جديد")
+            }
+
+            // MARK: - Results Alert
+
+            .alert("اكتمل التحدي!", isPresented: $showResults) {
+                Button("متابعة", role: .cancel) {
+                    dismiss()
+                }
+            } message: {
+                Text(resultsMessage)
+            }
+
+            // MARK: - Step Counter Error
+
+            .alert("عداد الخطوات غير متاح", isPresented: $showStepError) {
+                Button("حسنًا", role: .cancel) {
+                    dismiss()
+                }
+            } message: {
+                Text("لا يمكن الوصول إلى عداد الخطوات على هذا الجهاز.")
+            }
+
+            // MARK: - Audio Error
+
+            .alert("تعذر تشغيل الصوت", isPresented: $showAudioError) {
+                Button("حسنًا", role: .cancel) {}
+            } message: {
+                Text("تأكد من إضافة ملفات bird.mp3 و dog.mp3 و cat.mp3 إلى موارد التطبيق.")
+            }
         }
-        .padding(.horizontal, 16)
-        .padding(.top, 8)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color("taskBG"))
-        .onAppear {
-            startChallenge()
-        }
-        .onDisappear {
-            isRoundRunning = false
-            activeTrialID = UUID()
-
-            trialTask?.cancel()
-            trialTask = nil
-
-            pedometer.stopUpdates()
-            stopAudio()
-        }
-        .confirmationDialog(
-            "هل أنت متأكد من الخروج؟",
-            isPresented: $showExitConfirmation,
-            titleVisibility: .visible
-        ) {
-            Button("الاستمرار", role: .cancel) {
-                // Continue the challenge without resetting progress.
-            }
-
-            Button("تأكيد الخروج", role: .destructive) {
-                cancelChallenge()
-            }
-        } message: {
-            Text("الخروج يؤدي إلى إعادة المرحلة من جديد")
-        }
-        .alert("اكتمل التحدي!", isPresented: $showResults) {
-            Button("متابعة", role: .cancel) {
-                dismiss()
-            }
-        } message: {
-            Text("""
-            أحسنت! أكملت \(currentStepGoal.formatted()) خطوة.
-
-            الإجابات الصحيحة: \(correctCount + correctRejections)
-            الإجابات الخاطئة: \(incorrectCount)
-            الأصوات المستهدفة التي فاتتك: \(missedCount)
-
-            هدفك القادم يعتمد على مستواك الحالي.
-            """)
-        }
-        .alert("عداد الخطوات غير متاح", isPresented: $showStepError) {
-            Button("حسنًا", role: .cancel) {
-                dismiss()
-            }
-        } message: {
-            Text("لا يمكن الوصول إلى عداد الخطوات على هذا الجهاز.")
-        }
-        .alert("تعذر تشغيل الصوت", isPresented: $showAudioError) {
-            Button("حسنًا", role: .cancel) {}
-        } message: {
-            Text("تأكد من إضافة ملفات bird.mp3 و dog.mp3 و cat.mp3 إلى موارد التطبيق.")
-        }
-        
     }
 }
 

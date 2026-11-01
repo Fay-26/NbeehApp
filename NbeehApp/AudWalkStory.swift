@@ -5,6 +5,7 @@
 //  Created by Fay Alabdulqader on 29/10/2026.
 //
 
+
 import SwiftUI
 import CoreMotion
 import AVFoundation
@@ -27,7 +28,7 @@ struct AudWalkStory: View {
     @State private var showAudioError = false
 
     @State private var navigateToMovingPageStory = false
-    @State private var navigateToMainView = false
+    @State private var navigateToTabScreen = false
 
     @State private var audioPlayer: AVAudioPlayer?
     @State private var audioDelegate: StoryAudioDelegate?
@@ -191,8 +192,8 @@ struct AudWalkStory: View {
             forKey: "nbeehPendingStorySteps"
         )
 
-        // الانتقال إلى الصفحة الرئيسية
-        navigateToMainView = true
+        // الانتقال إلى TabScreen
+        navigateToTabScreen = true
     }
 
     // MARK: - Interface
@@ -260,7 +261,6 @@ struct AudWalkStory: View {
                         .font(.system(size: 15))
                         .foregroundStyle(Color("textbig"))
                         .frame(maxWidth: .infinity)
-
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 70)
@@ -309,7 +309,6 @@ struct AudWalkStory: View {
                         in: RoundedRectangle(cornerRadius: 30)
                     )
                     .padding(.top, 50)
-
                 }
                 .disabled(isPlaying || storyFinished || challengeFinished)
                 .opacity(
@@ -360,11 +359,11 @@ struct AudWalkStory: View {
                     .navigationBarBackButtonHidden(true)
             }
 
-            // الانتقال إلى MainView عند اختيار خروج
+            // الانتقال إلى TabScreen عند اختيار خروج
             .navigationDestination(
-                isPresented: $navigateToMainView
+                isPresented: $navigateToTabScreen
             ) {
-                MainView()
+                TabScreen()
                     .navigationBarBackButtonHidden(true)
             }
 
@@ -376,7 +375,6 @@ struct AudWalkStory: View {
             ) {
                 Button("استمرار", role: .cancel) {
                     // إغلاق التنبيه فقط.
-                    // يبقى التحدي والخطوات والقصة كما هي.
                 }
 
                 Button("خروج", role: .destructive) {
@@ -430,7 +428,6 @@ private final class StoryAudioDelegate: NSObject, AVAudioPlayerDelegate {
         onFinish?(flag)
     }
 }
-
 
 #Preview {
     AudWalkStory()

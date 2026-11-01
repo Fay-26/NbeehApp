@@ -6,6 +6,7 @@
 //
 
 
+
 import SwiftUI
 
 struct ChallengeExplanationView: View {
@@ -105,7 +106,7 @@ struct ChallengeExplanationView: View {
                 .background(Color("box"))
                 .cornerRadius(50)
                 .padding(.horizontal, 30)
-                
+
                 Spacer()
 
                 Text("أكمل تحديك اليومي ودَرّب انتباهك")
@@ -117,9 +118,10 @@ struct ChallengeExplanationView: View {
                     )
                     .foregroundColor(Color("textsmall"))
 
-                // الانتقال إلى MainView
+                // الانتقال إلى TabScreen
                 NavigationLink {
-                    MainView()
+                    TabScreen()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
 
                     Text("يلا نبدأ التحدي")

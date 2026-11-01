@@ -6,6 +6,7 @@
 //
 
 
+
 import SwiftUI
 
 // MARK: - نموذج السؤال
@@ -56,7 +57,7 @@ struct QuizView: View {
 
     @State private var showExitAlert = false
     @State private var goToVisualTask = false
-    @State private var goToMainView = false
+    @State private var goToTabScreen = false
     @State private var hasStartedNavigation = false
 
     // MARK: - أسئلة قصة سارة
@@ -152,9 +153,9 @@ struct QuizView: View {
             .navigationBarBackButtonHidden(true)
         }
 
-        // الانتقال إلى MainView عند تأكيد الخروج
-        .navigationDestination(isPresented: $goToMainView) {
-            MainView()
+        // الانتقال إلى TabScreen عند تأكيد الخروج
+        .navigationDestination(isPresented: $goToTabScreen) {
+            TabScreen()
                 .navigationBarBackButtonHidden(true)
         }
 
@@ -169,7 +170,7 @@ struct QuizView: View {
 
             Button("خروج", role: .destructive) {
                 hasStartedNavigation = true
-                goToMainView = true
+                goToTabScreen = true
             }
         } message: {
             Text("الخروج يؤدي إلى إعادة المرحلة من جديد.")
@@ -266,7 +267,6 @@ struct QuizView: View {
         .padding(.top, 60)
     }
 
- 
     // MARK: - الخيارات
 
     private var answersView: some View {
@@ -300,7 +300,6 @@ struct QuizView: View {
         }
         .padding(.horizontal, 14)
     }
-
 
     // MARK: - اختيار الإجابة
 

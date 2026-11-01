@@ -5,11 +5,12 @@
 //  Created by Fay Alabdulqader on 29/10/2026.
 //
 
+
 import SwiftUI
 
 struct AboutAppView: View {
 
-    @State private var goToMainView = false
+    @State private var goToTabScreen = false
 
     var body: some View {
 
@@ -44,11 +45,10 @@ struct AboutAppView: View {
 
                             ويركّز التطبيق على تنمية نوعين من الانتباه: الانتباه الانتقائي، من خلال التركيز على عناصر محددة وتجاهل المشتتات، والانتباه المستمر، من خلال المحافظة على التركيز لفترة زمنية.
                             """)
-                        
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundColor(Color("textsmalldark"))
-                        .multilineTextAlignment(.trailing)
-                        .padding(.top, 20)
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundColor(Color("textsmalldark"))
+                            .multilineTextAlignment(.trailing)
+                            .padding(.top, 20)
                     }
 
                     Divider()
@@ -128,9 +128,9 @@ struct AboutAppView: View {
 
                 Spacer()
 
-                // زر فهمت: الانتقال إلى MainView
+                // زر فهمت: الانتقال إلى TabScreen
                 Button {
-                    goToMainView = true
+                    goToTabScreen = true
                 } label: {
 
                     Text("فهمت")
@@ -148,8 +148,8 @@ struct AboutAppView: View {
         .environment(\.layoutDirection, .rightToLeft)
 
         // وجهة الانتقال
-        .navigationDestination(isPresented: $goToMainView) {
-            MainView()
+        .navigationDestination(isPresented: $goToTabScreen) {
+            TabScreen()
                 .navigationBarBackButtonHidden(true)
         }
     }

@@ -6,6 +6,7 @@
 //
 
 
+
 import SwiftUI
 
 struct ChallengeResultsView: View {
@@ -17,10 +18,11 @@ struct ChallengeResultsView: View {
 
     var onFinished: () -> Void = {}
 
-    // مخزن نتائج الأداء
+    // Performance results store
     @ObservedObject private var store = PerformanceStore.shared
 
     @State private var opacity: Double = 0
+    @State private var navigateToTabScreen = false
 
     // MARK: - Scores
 
@@ -310,9 +312,17 @@ struct ChallengeResultsView: View {
         }
         .preferredColorScheme(.dark)
 
+        // Navigate to TabScreen automatically
+        .navigationDestination(
+            isPresented: $navigateToTabScreen
+        ) {
+            TabScreen()
+                .navigationBarBackButtonHidden(true)
+        }
+
         .task {
 
-            // حفظ نتيجة تحدي اليوم
+            // Save today's challenge results
             saveTodayPerformance()
 
             withAnimation(
@@ -347,11 +357,12 @@ struct ChallengeResultsView: View {
 
                 try Task.checkCancellation()
 
-                onFinished()
+                // Go to TabScreen after results disappear
+                navigateToTabScreen = true
 
             } catch {
 
-                // إيقاف الانتظار إذا غادر المستخدم الشاشة.
+                // Stop waiting if the user leaves the screen.
             }
         }
     }
@@ -384,11 +395,13 @@ struct ChallengeResultsView: View {
 
 #Preview {
 
-    ChallengeResultsView(
-        auditoryCorrectAnswers: 3,
-        visualCorrectAnswers: 4,
-        visualTotalErrors: 1,
-        visualAverageReactionTime: 1.25
-    )
-}
+    NavigationStack {
 
+        ChallengeResultsView(
+            auditoryCorrectAnswers: 3,
+            visualCorrectAnswers: 4,
+            visualTotalErrors: 1,
+            visualAverageReactionTime: 1.25
+        )
+    }
+}

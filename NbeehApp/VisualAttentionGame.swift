@@ -7,6 +7,7 @@
 
 
 
+
 import SwiftUI
 
 // MARK: - نماذج اللعبة
@@ -41,7 +42,7 @@ struct VisualAttentionGame: View {
     private var difficultyLevel = 0
 
     @State private var showExitAlert = false
-    @State private var goToMainView = false
+    @State private var goToTabScreen = false
 
     @State private var roundNumber = 1
     @State private var boardTiles: [GameTile] = []
@@ -131,17 +132,17 @@ struct VisualAttentionGame: View {
                     // إغلاق صفحة النتائج
                     showResults = false
 
-                    // الانتقال إلى MainView
-                    goToMainView = true
+                    // الانتقال إلى TabScreen
+                    goToTabScreen = true
                 }
             )
             .navigationBarBackButtonHidden(true)
         }
 
-        // MARK: - الانتقال إلى MainView
+        // MARK: - الانتقال إلى TabScreen
 
-        .navigationDestination(isPresented: $goToMainView) {
-            MainView()
+        .navigationDestination(isPresented: $goToTabScreen) {
+            TabScreen()
                 .navigationBarBackButtonHidden(true)
         }
 
@@ -154,7 +155,7 @@ struct VisualAttentionGame: View {
             Button("استمرار", role: .cancel) {}
 
             Button("خروج", role: .destructive) {
-                goToMainView = true
+                goToTabScreen = true
             }
         } message: {
             Text("الخروج يؤدي إلى إعادة المرحلة من جديد.")

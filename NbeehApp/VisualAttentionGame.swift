@@ -5,6 +5,8 @@
 //  Created by Fay Alabdulqader on 29/10/2026.
 //
 
+
+
 import SwiftUI
 
 // MARK: - نماذج اللعبة
@@ -32,8 +34,6 @@ struct VisualAttentionGame: View {
 
     // MARK: - التنقل والحالة
 
-    @Environment(\.dismiss) private var dismiss
-
     @StateObject private var progress = UserProgress.shared
     @StateObject private var performance = PerformanceStore.shared
 
@@ -53,7 +53,6 @@ struct VisualAttentionGame: View {
     @State private var hasSavedResults = false
 
     @State private var showResults = false
-    @State private var saveFailed = false
 
     // MARK: - إحصائيات اللعبة
 
@@ -73,7 +72,6 @@ struct VisualAttentionGame: View {
         count: 3
     )
 
-    // 15 شكلًا في كل جولة
     private var boardTileCount: Int {
         15
     }
@@ -121,7 +119,7 @@ struct VisualAttentionGame: View {
         .preferredColorScheme(.dark)
         .navigationBarBackButtonHidden(true)
 
-        // MARK: - الانتقال إلى صفحة النتائج
+        // MARK: - صفحة النتائج
 
         .navigationDestination(isPresented: $showResults) {
             ChallengeResultsView(
@@ -130,14 +128,17 @@ struct VisualAttentionGame: View {
                 visualTotalErrors: totalErrors,
                 visualAverageReactionTime: averageReactionTime,
                 onFinished: {
+                    // إغلاق صفحة النتائج
                     showResults = false
-                    dismiss()
+
+                    // الانتقال إلى MainView
+                    goToMainView = true
                 }
             )
             .navigationBarBackButtonHidden(true)
         }
 
-        // MARK: - الانتقال إلى MainView عند الخروج
+        // MARK: - الانتقال إلى MainView
 
         .navigationDestination(isPresented: $goToMainView) {
             MainView()
@@ -157,19 +158,6 @@ struct VisualAttentionGame: View {
             }
         } message: {
             Text("الخروج يؤدي إلى إعادة المرحلة من جديد.")
-        }
-
-        // MARK: - تنبيه تعذّر حفظ النتائج
-
-        .alert(
-            "تعذّر حفظ النتائج",
-            isPresented: $saveFailed
-        ) {
-            Button("حسنًا", role: .cancel) {}
-        } message: {
-            Text(
-                "لم يتم تسجيل جلسة اليوم. يمكنك مراجعة الأداء الأسبوعي لمعرفة ما تم حفظه."
-            )
         }
 
         // MARK: - بدء الجلسة
@@ -239,19 +227,15 @@ struct VisualAttentionGame: View {
                 Button {
                     showResults = true
                 } label: {
-                    Text(
-                        saveFailed
-                            ? "انتهت الجولات الخمس، لكن تعذّر حفظ النتائج.\nاضغطي هنا لعرض النتائج"
-                            : "انتهت الجولات الخمس!\nاضغط هنا لعرض النتائج"
-                    )
-                    .font(.system(size: 26, weight: .semibold))
-                    .foregroundStyle(Color("mainBG"))
-                    .multilineTextAlignment(.center)
-                    .frame(
-                        maxWidth: .infinity,
-                        maxHeight: .infinity
-                    )
-                    .contentShape(Rectangle())
+                    Text("انتهت الجولات الخمس!\nاضغط هنا لعرض النتائج")
+                        .font(.system(size: 26, weight: .semibold))
+                        .foregroundStyle(Color("mainBG"))
+                        .multilineTextAlignment(.center)
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: .infinity
+                        )
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
 
@@ -287,7 +271,6 @@ struct VisualAttentionGame: View {
         )
         .padding(.horizontal, 30)
     }
-   
 
     private func shapeAccessibilityName(
         _ shape: GameShape
@@ -311,7 +294,6 @@ struct VisualAttentionGame: View {
         isFinished = false
         isProcessingSelection = false
         hasSavedResults = false
-        saveFailed = false
 
         reactionTimes = []
         correctAnswers = 0
@@ -503,8 +485,6 @@ struct VisualAttentionGame: View {
 
         if saved {
             progress.completeDailyMission()
-        } else {
-            saveFailed = true
         }
 
         // منع استخدام الخطوات مرة أخرى

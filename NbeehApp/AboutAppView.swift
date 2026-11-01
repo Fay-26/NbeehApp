@@ -145,7 +145,6 @@ struct AboutAppView: View {
                 .padding(.bottom, 30)
             }
         }
-        .environment(\.layoutDirection, .rightToLeft)
 
         // وجهة الانتقال
         .navigationDestination(isPresented: $goToTabScreen) {
